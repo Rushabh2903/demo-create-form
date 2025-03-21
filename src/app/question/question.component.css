@@ -1,0 +1,19 @@
+/* src/app/question/question.component.css */
+.question {
+    margin-bottom: 15px;
+  }
+  
+  .option-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .option-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .remove-button {
+    margin-top: 15px;
+  }

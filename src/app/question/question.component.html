@@ -1,0 +1,32 @@
+<mat-card class="question">
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput [(ngModel)]="question.text" placeholder="Untitled Question" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select [(ngModel)]="question.type">
+          <mat-option value="multipleChoice">Multiple Choice</mat-option>
+          <mat-option value="text">Text</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div *ngIf="question.type === 'multipleChoice' && question.options">
+        <div *ngFor="let option of question.options; let i = index" class="option-row">
+          <mat-form-field appearance="outline" class="option-input">
+            <input matInput [(ngModel)]="question.options[i]" />
+          </mat-form-field>
+          <button mat-icon-button (click)="removeOption(i)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button (click)="addOption()">Add Option</button>
+      </div>
+  
+      <mat-checkbox [(ngModel)]="question.required">Required</mat-checkbox>
+  
+      <div class="remove-button">
+        <button mat-raised-button color="warn" (click)="onRemove()">Remove Question</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
