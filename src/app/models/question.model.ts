@@ -2,7 +2,7 @@
 export interface Question {
     id: number;
     text: string;
-    type: 'multipleChoice' | 'text' | 'checkboxes' | 'dropdown'; // Add more types
+    type: 'shortText' | 'paragraph' | 'multipleChoice' | 'checkboxes' | 'dropdown'; 
     options?: string[]; // For multiple choice, checkboxes, dropdown
     required: boolean;
-  }
+}

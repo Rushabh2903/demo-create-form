@@ -1,32 +1,51 @@
 <mat-card class="question">
-    <mat-card-content>
-      <mat-form-field appearance="outline" class="full-width">
+  <mat-card-content>
+    <div class="question-text-type">
+      <mat-form-field appearance="outline" class="question-text">
         <input matInput [(ngModel)]="question.text" placeholder="Untitled Question" />
       </mat-form-field>
   
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field appearance="outline" class="question-type">
         <mat-select [(ngModel)]="question.type">
+          <mat-option value="shortText">Short text</mat-option>
+          <mat-option value="paragraph">Paragraph</mat-option>
           <mat-option value="multipleChoice">Multiple Choice</mat-option>
-          <mat-option value="text">Text</mat-option>
+          <mat-option value="checkboxes"><mat-icon>check_circle</mat-icon>Checkboxes</mat-option>
+          <mat-option value="dropdown">Drop-down</mat-option>
         </mat-select>
       </mat-form-field>
-  
-      <div *ngIf="question.type === 'multipleChoice' && question.options">
-        <div *ngFor="let option of question.options; let i = index" class="option-row">
-          <mat-form-field appearance="outline" class="option-input">
-            <input matInput [(ngModel)]="question.options[i]" />
-          </mat-form-field>
-          <button mat-icon-button (click)="removeOption(i)">
-            <mat-icon>remove</mat-icon>
-          </button>
-        </div>
-        <button mat-raised-button (click)="addOption()">Add Option</button>
+    </div>
+    
+    <div class="question-options"
+      *ngIf="(question.type === 'multipleChoice' 
+        || question.type === 'checkboxes' 
+        || question.type === 'dropdown') 
+      && question.options">
+      
+      <div *ngFor="let option of question.options; let i = index" class="option-row">
+        <mat-form-field appearance="outline" class="option-input">
+          <input matInput [(ngModel)]="question.options[i]" placeholder="Option" />
+        </mat-form-field>
+        <button mat-icon-button class="remove-option-btn" (click)="removeOption(i)">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
-  
-      <mat-checkbox [(ngModel)]="question.required">Required</mat-checkbox>
-  
-      <div class="remove-button">
-        <button mat-raised-button color="warn" (click)="onRemove()">Remove Question</button>
+      
+      <button mat-button class="add-option-btn" (click)="addOption()">Add Option</button>
+    </div>
+
+    
+
+    <div class="question-actions">
+      <div class="required-box">
+        <mat-checkbox [(ngModel)]="question.required"></mat-checkbox>Required
       </div>
-    </mat-card-content>
-  </mat-card>
+      <button mat-icon-button (click)="onDuplicate()" class="duplicate-btn">
+        <mat-icon>content_copy</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onRemove()" class="action-btn delete-btn">
+        <mat-icon class="mat-icon-large">delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

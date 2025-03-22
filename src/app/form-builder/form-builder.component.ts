@@ -16,7 +16,7 @@ export class FormBuilderComponent {
   addQuestion() {
     const newQuestion: Question = {
       id: this.questionIdCounter++,
-      text: 'Untitled Question',
+      text: 'Question text',
       type: 'multipleChoice',
       options: ['Option 1'],
       required: false,
@@ -26,5 +26,22 @@ export class FormBuilderComponent {
 
   removeQuestion(id: number) {
     this.questions = this.questions.filter((q) => q.id !== id);
+    
   }
+
+  duplicateQuestion(id: number) {
+    const index = this.questions.findIndex(question => question.id === id);
+    if (index == -1) return; 
+    const questionToDuplicate = this.questions[index];
+    console.log(questionToDuplicate);
+  
+    const duplicatedQuestion: Question = {
+      ...questionToDuplicate, 
+      id: this.questionIdCounter++, 
+      options: questionToDuplicate.options ? [...questionToDuplicate.options] : [], 
+    };
+  
+    this.questions.splice(id + 1, 0, duplicatedQuestion); 
+  }
+  
 }

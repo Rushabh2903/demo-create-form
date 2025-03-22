@@ -10,6 +10,7 @@ import { Question } from '../models/question.model';
 export class QuestionComponent {
   @Input() question!: Question;
   @Output() remove = new EventEmitter<number>();
+  @Output() duplicate = new EventEmitter<number>();
 
   addOption() {
     if (!this.question.options) {
@@ -26,5 +27,8 @@ export class QuestionComponent {
 
   onRemove() {
     this.remove.emit(this.question.id);
+  }
+  onDuplicate() {
+    this.duplicate.emit(this.question.id);
   }
 }
