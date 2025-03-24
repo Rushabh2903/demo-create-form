@@ -18,7 +18,7 @@ export class AppComponent {
     });
     this.questions = this.formBuilder.get('questions') as FormArray;
   }
-
+  
   addQuestion() {
     this.questions.push(this.fb.group({
       questionText: ['Question text'],
