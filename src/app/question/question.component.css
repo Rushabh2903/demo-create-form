@@ -50,6 +50,7 @@
 }
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
   background-color: green !important; /* Change checked color */
+  background-color: aqua;
 }
 .required-box {
   padding: 0 10px;
@@ -65,4 +66,5 @@
 
 .delete-btn {
   color: #c0180c;
+  color: #5f6368;
 }
