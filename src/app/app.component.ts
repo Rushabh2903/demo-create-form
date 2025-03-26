@@ -19,14 +19,14 @@ export class AppComponent {
     this.questions = this.formBuilder.get('questions') as FormArray;
   }
   
-  addQuestion() {
-    this.questions.push(this.fb.group({
-      questionText: ['Question text'],
-      type: ['shortText'],
-      options: this.fb.array([]),
-      required: false, 
-    }));    
-  }
+    addQuestion() {
+        this.questions.push(this.fb.group({
+            questionText: ['Question text'],
+            type: ['shortText'],
+            options: this.fb.array([]),
+            required: false, 
+        }));    
+    }
 
   duplicateQuestion(index: number) {
     const originalQuestion = this.questions.at(index).value; 
